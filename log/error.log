@@ -26,3 +26,7 @@
 {"level":"error","message":"Cast to ObjectId failed for value \"1\" (type string) at path \"_id\" for model \"Genre\""}
 {"level":"error","message":"Cast to ObjectId failed for value \"1\" (type string) at path \"_id\" for model \"Genre\""}
 {"level":"error","message":"Cast to ObjectId failed for value \"1\" (type string) at path \"_id\" for model \"Genre\""}
+{"level":"error","message":"Genre validation failed: name: Path `name` is required."}
+{"level":"error","message":"Genre validation failed: name: Path `name` is required."}
+{"level":"error","message":"Genre validation failed: name: Path `name` is required."}
+{"level":"error","message":"Genre validation failed: name: Path `name` is required."}
