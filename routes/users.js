@@ -24,9 +24,10 @@ router.post("/", async (req, res) => {
         return res.status(400).send(error.details[0].message);
     }
 
+    let isValidUsername = await User.findOne({ username: req.body.username });
     let isValidEmail = await User.findOne({ email: req.body.email });
-    if (isValidEmail) {
-        return res.status(400).send("Email already registered...");
+    if (isValidEmail || isValidUsername) {
+        return res.status(400).send("Email or username already registered...");
     }
 
     try {
@@ -35,10 +36,9 @@ router.post("/", async (req, res) => {
         );
         const salt = await bcrypt.genSalt(10);
         user.password = await bcrypt.hash(user.password, salt);
-        await user.save();
+        user.save();
         // get token
         const token = user.generateAuthToken();
-
         res.header("x-auth-token", token).send(
             _.pick(user, ["_id", "username", "email"])
         );

@@ -1,10 +1,10 @@
 const express = require("express");
-const {Customer, validateRequest} = require("../models/customer-model");
+const { Customer, validateRequest } = require("../models/customer-model");
 const router = express.Router();
 const auth = require("../middleware/authentication-middleware");
 // get the list of genres
 router.get("/", async (req, res) => {
-    const customers = await Customer.find().sort({name: 1});
+    const customers = await Customer.find().sort({ name: 1 });
     res.send(customers);
 });
 // get a single genre with corresponding id
@@ -18,13 +18,13 @@ router.get("/:id", auth, async (req, res) => {
 // create an new genres
 router.post("/", auth, async (req, res) => {
     // validate the request
-    const {error} = validateRequest(req);
+    const { error } = validateRequest(req);
     if (error) {
         // bad request
         return res.status(400).send(error.details[0].message);
     }
     // check if the user already exist
-    const customers = await Customer.find().sort({name: 1});
+    const customers = await Customer.find().sort({ name: 1 });
     let isExist = false;
     customers.forEach((customer) => {
         if (customer.name === req.body.name) {
@@ -41,13 +41,13 @@ router.post("/", auth, async (req, res) => {
         phone: req.body.phone,
     });
     // save in the db
-    await newCustomer.save();
+    newCustomer.save();
     res.send(newCustomer);
 });
 // update a genre
 router.put("/:id", auth, async (req, res) => {
     // validating the request
-    let {error} = validateRequest(req);
+    let { error } = validateRequest(req);
     if (error) {
         return res.status(400).send(error.details[0].message);
     }

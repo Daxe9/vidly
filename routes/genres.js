@@ -42,7 +42,7 @@ router.post(
             name: req.body.genre,
         });
         // save in the db
-        await newGenre.save();
+        newGenre.save();
         res.send(newGenre);
     })
 );

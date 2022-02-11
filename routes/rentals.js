@@ -55,10 +55,10 @@ router.post("/", auth, async (req, res) => {
     try {
         await session.withTransaction(async () => {
             // save a new rental in the db
-            newRental = await newRental.save({ session });
+            newRental.save({ session });
             --movie.numberInStock;
             // update the movie
-            await movie.save({ session });
+            movie.save({ session });
             res.send(newRental);
         });
 

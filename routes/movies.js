@@ -50,7 +50,7 @@ router.post("/", auth, async (req, res) => {
         dailyRentalRate: req.body.dailyRentalRate,
     });
     // save in the db
-    await newMovie.save();
+    newMovie.save();
     res.send(newMovie);
 });
 // update a genre
