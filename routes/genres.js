@@ -39,7 +39,7 @@ router.post(
         }
         // create a new genre then add it to the list
         const newGenre = new Genre({
-            name: req.body.genre,
+            name: req.body.name,
         });
         // save in the db
         newGenre.save();
